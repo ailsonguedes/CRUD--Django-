@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./static/css/style.css">
+        <title>Lista de Usuários</title>
+    </head>
+    <body>
+    <div class="userCad">
+        <h1>Usuários Cadastrados</h1>
+    </div>
+
+    <div class="buttonCreate">
+        <a class= "abutton" href="{% url 'create' %}"><i class="plusCircle"></i>Adicionar Usuário</a>
+    </div>
+
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.nome|capfirst }}</td>
+                    <td>{{ user.telefone }}</td>
+                    <td>{{ user.email }}</td>
+                    <td> 
+                        <div class="btnGroup">
+                        </div>
+                    </td>             
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan=4 class="textCenter">
+                        Não Há Usuários Para Serem Listados
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </body>
+</html>
+{% endblock %}

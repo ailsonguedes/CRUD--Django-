@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" autocomplete="off">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="formGroup">
+        <label for="{{ field.id_for_label }}" class="labelField">{{ field.label }}</label>
+        <div class="field1">
+            {{ field }}
+        </div>
+    </div>
+    {% if field.errors %}
+    {% for error in field.errors %}
+    <div class="errorDiv">
+        <span class="error_red">{{ error }}</span>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+    <div class="buttonDiv">
+        <button class="submit" type="submit" name="acao" value="salvar">Salvar</button>
+    </div>
+</form>
+
+{% endblock %}
